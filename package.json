@@ -1,0 +1,16 @@
+{
+  "name": "sound",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dev.js",
+  "scripts": {
+    "dev": "node dev",
+    "test": "echo \"Tests? Which tests?\""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "browser-sync": "^2.29.3"
+  }
+}
