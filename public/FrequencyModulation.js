@@ -24,11 +24,11 @@ const OscGainNode = (AC, type = 'sine'|'square'|'triangle') => {
 
 export class FrequencyModulation {
 
-  constructor(audioContext, frequency, modulationDepth) {
+  constructor(audioContext, modulationFrequency = 12, modulationDepth = 4) {
     this.audioContext = audioContext;
-    this.modulationDepth = modulationDepth || 10;
-    this.frequency = 16;
-    this.carrier = OscGainNode(this.audioContext, 'triangle');
+    this.modulationDepth = modulationDepth;
+    this.modulationFrequency = modulationFrequency;
+    this.carrier = OscGainNode(this.audioContext, 'square');
     this.modulator = OscGainNode(this.audioContext, 'square');
 
     this.modulator.osc.connect(this.modulator.gain);
@@ -41,8 +41,8 @@ export class FrequencyModulation {
   play(note1, startTime, endTime) {
     const frequency = noteToFrequency(note1);
     this.carrier.osc.frequency.setValueAtTime(frequency, startTime);
-    this.modulator.osc.frequency.setValueAtTime(this.frequency, startTime);
-    this.modulator.gain.gain.setValueAtTime(frequency / 2, startTime);
+    this.modulator.osc.frequency.setValueAtTime(this.modulationFrequency, startTime);
+    this.modulator.gain.gain.setValueAtTime(frequency / this.modulationDepth, startTime);
     this.carrier.gain.gain.setValueAtTime(1, startTime);
     this.carrier.gain.gain.linearRampToValueAtTime(0, endTime);
   }

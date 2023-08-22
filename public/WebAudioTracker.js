@@ -29,7 +29,7 @@ class WebAudioTracker extends HTMLElement {
       const melody2 = ['E5', 'G5', 'B5', 'E6', 'G5', 'C6', 'F6', 'A6'];
       const rhythm = [0.5, 0.25, 0.25, 0.5]; // in seconds
 
-      const fmChiptune = new FrequencyModulation(this.audioContext, 150); // Chiptune-style modulation
+      const fmChiptune = new FrequencyModulation(this.audioContext, 12,4); // Chiptune-style modulation
       // const fmSine = new FrequencyModulation(this.audioContext, 180); // Sine wave modulation
 
       let startTime = this.audioContext.currentTime;
